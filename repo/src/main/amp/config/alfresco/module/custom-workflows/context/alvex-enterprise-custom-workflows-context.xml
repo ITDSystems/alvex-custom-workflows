@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+<beans>
+	<bean id="alvex-enterprise-custom-workflows-wd" parent="workflowDeployer">
+		<!-- Register workflows -->
+		<property name="workflowDefinitions">
+			<list>
+				<props>
+					<prop key="engineId">activiti</prop>
+					<prop key="location">alfresco/module/${project.artifactId}/workflows/alvex-parallel-review-20.bpmn20.xml</prop>
+					<prop key="mimetype">text/xml</prop>
+					<prop key="redeploy">false</prop>
+				</props>
+				<props>
+					<prop key="engineId">activiti</prop>
+					<prop key="location">alfresco/module/${project.artifactId}/workflows/alvex-documents-dispatching-20.bpmn20.xml</prop>
+					<prop key="mimetype">text/xml</prop>
+					<prop key="redeploy">false</prop>
+				</props>
+			</list>
+		</property>
+		<!-- Register resource bundles -->
+		<property name="labels">
+			<list>
+				<value>alfresco.module.${project.artifactId}.messages.alvex-parallel-review-20</value>
+				<value>alfresco.module.${project.artifactId}.messages.alvex-documents-dispatching-20</value>
+			</list>
+		</property>
+		<!-- Register models -->
+		<property name="models">
+			<list>
+				<value>alfresco/module/${project.artifactId}/model/alvex-parallel-review-20-task-model.xml</value>
+				<value>alfresco/module/${project.artifactId}/model/alvex-documents-dispatching-20-task-model.xml</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="alvex-custom-workflows-permission-manager2" parent="alvex-custom-workflows-permission-manager">
+		<property name="matches">
+			<list>
+				<value>task-assign-after-change:.*@alvex-parallel-review-20</value>
+				<value>task-done:.*@alvex-parallel-review-20</value>
+				<value>process-start@alvex-parallel-review-20</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="alvex-custom-workflows-permission-manager3" parent="alvex-custom-workflows-permission-manager">
+		<property name="matches">
+			<list>
+				<value>task-assign-after-change:.*@alvex-documents-dispatching-20</value>
+				<value>task-done:.*@alvex-documents-dispatching-20</value>
+				<value>process-start@alvex-documents-dispatching-20</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="alvex-custom-workflows-delegations-manager1" parent="alvex-orgchart-delegations-manager">
+		<property name="matches">
+			<list>
+				<value>task-assign-change:.*@alvex-arbitrary-task</value>
+				<value>task-done:.*@alvex-arbitrary-task</value>
+				<value>process-start@alvex-arbitrary-task</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="alvex-custom-workflows-delegations-manager2" parent="alvex-orgchart-delegations-manager">
+		<property name="matches">
+			<list>
+				<value>task-assign-change:.*@alvex-parallel-review-20</value>
+				<value>task-done:.*@alvex-parallel-review-20</value>
+				<value>process-start@alvex-parallel-review-20</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="alvex-custom-workflows-delegations-manager3" parent="alvex-orgchart-delegations-manager">
+		<property name="matches">
+			<list>
+				<value>task-assign-change:.*@alvex-documents-dispatching-20</value>
+				<value>task-done:.*@alvex-documents-dispatching-20</value>
+				<value>process-start@alvex-documents-dispatching-20</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="alvex-enterprise-custom-workflows-default-variables-setter"
+		class="com.alvexcore.repo.workflow.activiti.WorkflowDefaultVariablesSetter"
+		parent="alvex-activiti-connector-activiti-listener">
+		<property name="matches">
+			<list>
+				<value>process-start@alvex-.*</value>
+				<value>process-start@activitiNotify</value>
+				<value>process-start@activitiCustomParallelReview</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="alvex-custom-workflows-parallel-review-lock" 
+		class="com.alvexcore.repo.workflow.activiti.WorkflowLockManager"
+		parent="alvex-activiti-connector-activiti-listener">
+		<property name="matches">
+			<list>
+				<value>task-create:Review Document@alvex-parallel-review-20</value>
+				<!--value>process-end@alvex-parallel-review-20</value-->
+			</list>
+		</property>
+		<property name="action">
+			<value>LOCK</value>
+		</property>
+	</bean>
+	<bean id="alvex-custom-workflows-parallel-review-unlock" 
+		class="com.alvexcore.repo.workflow.activiti.WorkflowLockManager"
+		parent="alvex-activiti-connector-activiti-listener">
+		<property name="matches">
+			<list>
+				<value>task-create:Revise Document@alvex-parallel-review-20</value>
+				<value>task-create:Document Approved@alvex-parallel-review-20</value>
+			</list>
+		</property>
+		<property name="action">
+			<value>UNLOCK</value>
+		</property>
+	</bean>
+</beans>

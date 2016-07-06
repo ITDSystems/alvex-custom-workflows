@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model xmlns="http://www.alfresco.org/model/dictionary/1.0" name="alvexdd20:documents-dispatching-model">
+
+	<!--Import necessary namespaces -->
+	<imports>
+		<import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d" />
+		<import uri="http://www.alfresco.org/model/content/1.0" prefix="cm" />
+		<import uri="http://www.alfresco.org/model/bpm/1.0" prefix="bpm" />
+		<import uri="http://www.alfresco.org/model/workflow/1.0" prefix="wf" />
+	</imports>
+	<namespaces>
+		<namespace prefix="alvexdd20" uri="http://alvexcore.com/prefix/alvexdd20" />
+	</namespaces>
+
+	<types>
+
+		<type name="alvexdd20:sendDocumentTask">
+			<parent>bpm:startTask</parent>
+			<mandatory-aspects>
+				<aspect>bpm:assignees</aspect>
+				<aspect>alvexdd20:notification</aspect>
+			</mandatory-aspects>
+		</type>
+
+		<type name="alvexdd20:readAcknowledgmentTask">
+			<parent>bpm:activitiOutcomeTask</parent>
+			<properties>
+				<property name="alvexdd20:readOutcome">
+					<type>d:text</type>
+					<default>Read</default>
+					<constraints>
+						<constraint name="alvexdd20:readOutcomeOptions" type="LIST">
+							<parameter name="allowedValues">
+								<list>
+									<value>Read</value>
+								</list>
+							</parameter>
+						</constraint>
+					</constraints>
+				</property>
+			</properties>
+			<overrides>
+				<property name="bpm:outcomePropertyName">
+					<default>{http://alvexcore.com/prefix/alvexdd20}readOutcome</default>
+				</property>
+			</overrides>
+			<mandatory-aspects>
+				<aspect>bpm:assignees</aspect>
+				<aspect>alvexdd20:notification</aspect>
+			</mandatory-aspects>
+		</type>
+
+	</types>
+
+	<aspects>
+		<aspect name="alvexdd20:notification">
+			<properties>
+				<property name="alvexdd20:notificationText">
+					<type>d:text</type>
+				</property>
+			</properties>
+		</aspect>
+	</aspects>
+
+</model>

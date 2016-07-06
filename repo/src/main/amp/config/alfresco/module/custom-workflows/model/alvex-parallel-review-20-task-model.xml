@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model xmlns="http://www.alfresco.org/model/dictionary/1.0" name="alvexwfpr20:parallel-review-task-model">
+	<imports>
+		<import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+		<import uri="http://www.alfresco.org/model/bpm/1.0" prefix="bpm"/>
+		<import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+	</imports>
+	<namespaces>
+		<namespace prefix="alvexwfpr20" uri="http://alvexcore.com/prefix/alvexwfpr20"/>
+	</namespaces>
+	<types>
+
+		<type name="alvexwfpr20:startTask">
+			<parent>bpm:startTask</parent>
+			<mandatory-aspects>
+				<aspect>bpm:assignees</aspect>
+				<aspect>alvexwfpr20:initiator</aspect>
+				<aspect>alvexwfpr20:comments</aspect>
+			</mandatory-aspects>
+		</type>
+
+		<type name="alvexwfpr20:reviewTask">
+			<parent>bpm:activitiOutcomeTask</parent>
+			<properties>
+				<property name="alvexwfpr20:reviewOutcome">
+					<type>d:text</type>
+					<default>Reject</default>
+					<constraints>
+						<constraint name="alvexwfpr20:reviewOutcomeOptions" type="LIST">
+							<parameter name="allowedValues">
+								<list>
+									<value>Approve</value>
+									<value>Reject</value>
+								</list>
+							</parameter>
+						</constraint>
+					</constraints>
+				</property>
+			</properties>
+			<overrides>
+				<property name="bpm:packageActionGroup">
+					<default>add_package_item_actions</default>
+				</property>
+				<property name="bpm:outcomePropertyName">
+					<default>{http://alvexcore.com/prefix/alvexwfpr20}reviewOutcome</default>
+				</property>
+			</overrides>
+			<mandatory-aspects>
+				<aspect>bpm:assignees</aspect>
+				<aspect>alvexwfpr20:initiator</aspect>
+				<aspect>alvexwfpr20:comments</aspect>
+			</mandatory-aspects>
+		</type>
+
+		<type name="alvexwfpr20:reviseTask">
+			<parent>bpm:activitiOutcomeTask</parent>
+			<properties>
+				<property name="alvexwfpr20:reviseOutcome">
+					<type>d:text</type>
+					<default>Resubmit</default>
+					<constraints>
+						<constraint name="alvexwfpr20:reviseOutcomeOptions" type="LIST">
+							<parameter name="allowedValues">
+								<list>
+									<value>Resubmit</value>
+								</list>
+							</parameter>
+						</constraint>
+					</constraints>
+				</property>
+			</properties>
+			<overrides>
+				<property name="bpm:packageItemActionGroup">
+					<default>edit_and_remove_package_item_actions</default>
+				</property>
+				<property name="bpm:packageActionGroup">
+					<default>add_package_item_actions</default>
+				</property>
+				<property name="bpm:outcomePropertyName">
+					<default>{http://alvexcore.com/prefix/alvexwfpr20}reviseOutcome</default>
+				</property>
+			</overrides>
+			<mandatory-aspects>
+				<aspect>bpm:assignees</aspect>
+				<aspect>alvexwfpr20:comments</aspect>
+			</mandatory-aspects>
+		</type>
+
+		<type name="alvexwfpr20:approvedTask">
+			<parent>bpm:activitiOutcomeTask</parent>
+			<properties>
+				<property name="alvexwfpr20:approvedOutcome">
+					<type>d:text</type>
+					<default>Done</default>
+					<constraints>
+						<constraint name="alvexwfpr20:approvedOutcomeOptions" type="LIST">
+							<parameter name="allowedValues">
+								<list>
+									<value>Done</value>
+								</list>
+							</parameter>
+						</constraint>
+					</constraints>
+				</property>
+			</properties>
+			<overrides>
+				<!--property name="bpm:packageItemActionGroup">
+					<default>edit_and_remove_package_item_actions</default>
+				</property>
+				<property name="bpm:packageActionGroup">
+					<default>add_package_item_actions</default>
+				</property-->
+				<property name="bpm:outcomePropertyName">
+					<default>{http://alvexcore.com/prefix/alvexwfpr20}approvedOutcome</default>
+				</property>
+			</overrides>
+			<mandatory-aspects>
+				<aspect>alvexwfpr20:comments</aspect>
+			</mandatory-aspects>
+		</type>
+
+	</types>
+
+	<aspects>
+		<aspect name="alvexwfpr20:initiator">
+			<associations>
+				<association name="alvexwfpr20:initiator">
+					<source>
+						<mandatory>false</mandatory>
+						<many>false</many>
+					</source>
+					<target>
+						<class>cm:person</class>
+						<mandatory>false</mandatory>
+						<many>false</many>
+					</target>
+				</association>
+			</associations>
+		</aspect>
+		<aspect name="alvexwfpr20:comments">
+			<properties>
+				<property name="alvexwfpr20:initiatorComment">
+					<type>d:text</type>
+				</property>
+				<property name="alvexwfpr20:comments">
+					<type>d:text</type>
+				</property>
+			</properties>
+		</aspect>
+	</aspects>
+</model>

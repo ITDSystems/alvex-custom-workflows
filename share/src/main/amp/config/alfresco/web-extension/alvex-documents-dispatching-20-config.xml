@@ -1,0 +1,106 @@
+<alfresco-config>
+
+	<config evaluator="string-compare" condition="activiti$alvex-documents-dispatching-20">
+		<forms>
+			<form>
+				<!--List of fields to render -->
+				<field-visibility>
+					<show id="bpm:workflowDescription" />
+					<show id="bpm:assignees" />
+					<show id="alvexdd20:notificationText" />
+					<show id="packageItems" />
+				</field-visibility>
+				<!--Fields appearance configuration -->
+				<appearance>
+					<!--Sets definition -->
+					<set id="task-info" appearance="title" label="" template="/org/alfresco/components/form/2-column-set.ftl"/>
+					<set id="documents" appearance="title" label-id="alvex_documents-dispatching.label.materials" />
+					<!--Fields -->
+					<field id="bpm:workflowDescription" label-id="alvex_documents-dispatching.label.description" set="task-info" mandatory="true" help="">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl">
+							<control-param name="style">width: 98%</control-param>
+						</control>
+					</field>
+					<field id="bpm:assignees" set="task-info" label-id="alvex_documents-dispatching.label.assignee">
+						<control template="/orgchart-picker.ftl" />
+					</field>
+					<field id="alvexdd20:notificationText" set="documents" label-id="alvex_documents-dispatching.label.notification_text">
+						<control template="/org/alfresco/components/form/controls/textarea.ftl">
+							<control-param name="style">width: 98%</control-param>
+						</control>
+					</field>
+					<field id="packageItems" label-id="alvex_documents-dispatching.label.packageItems" set="documents">
+
+					</field>
+				</appearance>
+			</form>
+		</forms>
+	</config>
+
+	<!--Form config to display workflow info -->
+	<config evaluator="task-type" condition="alvexdd20:sendDocumentTask">
+		<forms>
+			<form>
+				<!--List of fields to render -->
+				<field-visibility>
+					<show id="bpm:workflowDescription" />
+					<show id="bpm:assignees" />
+					<show id="alvexdd20:notificationText" />
+					<show id="packageItems" />
+				</field-visibility>
+				<!--Fields appearance configuration -->
+				<appearance>
+					<!--Sets definition -->
+					<set id="task-info" appearance="title" label="" template="/org/alfresco/components/form/2-column-set.ftl"/>
+					<set id="documents" appearance="title" label-id="alvex_documents-dispatching.label.materials" />
+					<!--Fields -->
+					<field id="bpm:workflowDescription" label-id="alvex_documents-dispatching.label.description" set="task-info" mandatory="true" help="">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl">
+							<control-param name="style">width: 98%</control-param>
+						</control>
+					</field>
+					<field id="bpm:assignees" set="task-info" label-id="alvex_documents-dispatching.label.assignee">
+						<control template="/orgchart-picker.ftl" />
+					</field>
+					<field id="alvexdd20:notificationText" set="documents" label-id="alvex_documents-dispatching.label.notification_text">
+						<control template="/org/alfresco/components/form/controls/textarea.ftl">
+							<control-param name="style">width: 98%</control-param>
+						</control>
+					</field>
+					<field id="packageItems" label-id="alvex_documents-dispatching.label.packageItems" set="documents">
+					</field>
+				</appearance>
+			</form>
+		</forms>
+	</config>
+
+	<config evaluator="task-type" condition="alvexdd20:readAcknowledgmentTask">
+		<forms>
+			<form>
+				<!--List of fields to render -->
+				<field-visibility>
+					<show id="alvexdd20:notificationText" />
+					<show id="packageItems" />
+					<show id="alvexdd20:readOutcome" />
+				</field-visibility>
+				<!--Fields appearance configuration -->
+				<appearance>
+					<!--Sets definition -->
+					<set id="documents" appearance="title" label="" />
+					<set id="related_workflows" appearance="title" label-id="alvex.workflow.related_workflows" />
+					<set id="response" appearance="title" label="" />
+					<!--Fields -->
+					<field id="alvexdd20:notificationText" set="documents" label-id="alvex_documents-dispatching.label.notification_text" read-only="true">
+						<control template="/alvex-mltext.ftl" />
+					</field>
+					<field id="packageItems" label-id="alvex_documents-dispatching.label.packageItems" set="documents" label="">
+					</field>
+					<field id="alvexdd20:readOutcome" set="response">
+						<control template="/org/alfresco/components/form/controls/workflow/activiti-transitions.ftl" />
+					</field>
+				</appearance>
+			</form>
+		</forms>
+	</config>
+
+</alfresco-config>

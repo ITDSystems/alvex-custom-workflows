@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model xmlns="http://www.alfresco.org/model/dictionary/1.0" name="alvexwfat:alvex-arbitrary-task-model">
+	<!--Import necessary namespaces -->
+	<imports>
+		<import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d" />
+		<import uri="http://www.alfresco.org/model/content/1.0" prefix="cm" />
+		<import uri="http://www.alfresco.org/model/bpm/1.0" prefix="bpm" />
+	</imports>
+	<namespaces>
+		<namespace prefix="alvexwfat"
+			uri="http://alvexcore.com/prefix/alvexwfat" />
+	</namespaces>
+	
+	<!--List of types -->
+	<types>
+		<!--Type for alvexwfat:startTask task -->
+		<type name="alvexwfat:startTask">
+			<parent>bpm:startTask</parent>
+			<properties>
+				<property name="alvexwfat:confirmationRequired">
+					<type>d:boolean</type>
+					<default>true</default>
+				</property>
+			</properties>
+			<!--Task mandatory aspects -->
+			<mandatory-aspects>
+				<aspect>bpm:assignee</aspect>
+				<aspect>alvexwfat:assignees</aspect>
+				<aspect>alvexwfat:taskDetails</aspect>
+			</mandatory-aspects>
+		</type>
+		
+		<!--Type for alvexwfat:executeTask task -->
+		<type name="alvexwfat:executeTask">
+			<parent>bpm:workflowTask</parent>
+			<!--overrides default properties values -->
+			<overrides>
+				<property name="bpm:packageActionGroup">
+					<default>add_package_item_actions</default>
+				</property>
+			</overrides>
+			<!--Task mandatory aspects -->
+			<mandatory-aspects>
+				<aspect>alvexwfat:taskDetails</aspect>
+			</mandatory-aspects>
+		</type>
+		
+		<!--Type for alvexwfat:assistTask task -->
+		<type name="alvexwfat:assistTask">
+			<parent>bpm:workflowTask</parent>
+			<mandatory-aspects>
+				<aspect>alvexwfat:taskDetails</aspect>
+			</mandatory-aspects>
+		</type>
+		
+		<!--Type for alvexwfat:controlTask task -->
+		<type name="alvexwfat:controlTask">
+			<parent>bpm:activitiOutcomeTask</parent>
+			<!--Add outcome property for activiti tasks-->
+			<properties>
+				<property name="alvexwfat:controlOutcome">
+					<type>d:text</type>
+					<default>rejected</default>
+					<constraints>
+						<constraint type="LIST" name="alvexwfat:controlOutcomeConstraint">
+							<parameter name="allowedValues">
+								<list>
+									<value>accepted</value>
+									<value>rejected</value>
+								</list>
+							</parameter>
+						</constraint>
+					</constraints>
+				</property>
+			</properties>
+			<overrides>
+				<property name="bpm:outcomePropertyName">
+					<default>{http://alvexcore.com/prefix/alvexwfat}controlOutcome</default>
+				</property>
+			</overrides>
+			<mandatory-aspects>
+				<aspect>alvexwfat:taskDetails</aspect>
+			</mandatory-aspects>
+		</type>
+	</types>
+	
+	<aspects>
+		<aspect name="alvexwfat:assignees">
+			<associations>
+				<association name="alvexwfat:assignees">
+					<source>
+						<mandatory>false</mandatory>
+						<many>false</many>
+					</source>
+					<target>
+						<class>cm:person</class>
+						<mandatory>false</mandatory>
+						<many>true</many>
+					</target>
+				</association>
+			</associations>
+		</aspect>
+		<aspect name="alvexwfat:taskDetails">
+			<properties>
+				<property name="alvexwfat:description">
+					<type>d:text</type>
+				</property>
+			</properties>
+		</aspect>
+	</aspects>
+</model>

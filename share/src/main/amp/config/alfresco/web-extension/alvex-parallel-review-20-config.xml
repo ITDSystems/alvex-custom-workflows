@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<alfresco-config>
+
+	<config evaluator="string-compare" condition="activiti$alvex-parallel-review-20">
+		<forms>
+			<form>
+				<field-visibility>
+					<show id="bpm:workflowDescription" />
+					<show id="bpm:workflowDueDate" />
+					<show id="bpm:assignees"/>
+					<show id="bpm:comment"/>
+					<show id="packageItems"/>
+				</field-visibility>
+				<appearance>
+					<set id="info" appearance="title" label-id="alvex-parallel-review-20.title.info" template="/org/alfresco/components/form/2-column-set.ftl"/>
+					<set id="email"/>
+					<set id="document" appearance="title" label-id="alvex-parallel-review-20.title.document"/>
+					<field id="bpm:workflowDescription" label-id="alvex-parallel-review-20.label.description" set="info" mandatory="true" help="">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl">
+							<control-param name="style">width: 98%</control-param>
+						</control>
+					</field>
+					<field id="bpm:workflowDueDate"  set="info"/>
+					<field id="bpm:assignees" label-id="alvex-parallel-review-20.label.assignees" set="info">
+						<control template="/orgchart-picker.ftl" />
+					</field>
+					<field id="bpm:comment" label-id="alvex-parallel-review-20.label.comment" set="info">
+						<control template="/org/alfresco/components/form/controls/textarea.ftl">
+							<control-param name="style">width: 98%</control-param>
+						</control>
+					</field>
+					<field id="packageItems" set="document" label-id="alvex-parallel-review-20.label.files">
+					</field>
+				</appearance>
+			</form>
+		</forms>
+	</config>
+
+	<config evaluator="task-type" condition="alvexwfpr20:startTask">
+		<forms>
+			<form>
+				<field-visibility>
+					<show id="bpm:workflowDescription" />
+					<show id="bpm:workflowDueDate" />
+					<show id="bpm:assignees"/>
+					<show id="bpm:comment"/>
+					<show id="bpm:sendEMailNotifications"/>
+					<show id="packageItems"/>
+				</field-visibility>
+				<appearance>
+					<set id="info" appearance="title" label-id="alvex-parallel-review-20.title.info" template="/org/alfresco/components/form/2-column-set.ftl"/>
+					<set id="email"/>
+					<set id="document" appearance="title" label-id="alvex-parallel-review-20.title.document"/>
+					<field id="bpm:workflowDescription" label-id="alvex-parallel-review-20.label.description" set="info" mandatory="true" help="">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl">
+							<control-param name="style">width: 98%</control-param>
+						</control>
+					</field>
+					<field id="bpm:workflowDueDate"  set="info"/>
+					<field id="bpm:assignees" label-id="alvex-parallel-review-20.label.assignees" set="info">
+						<control template="/orgchart-picker.ftl" />
+					</field>
+					<field id="bpm:comment" label-id="alvex-parallel-review-20.label.comment" set="info">
+						<control template="/org/alfresco/components/form/controls/textarea.ftl">
+							<control-param name="style">width: 98%</control-param>
+						</control>
+					</field>
+					<field id="bpm:sendEMailNotifications" set="email">
+						<control template="/org/alfresco/components/form/controls/workflow/email-notification.ftl" />
+					</field>
+					<field id="packageItems" set="document" label-id="alvex-parallel-review-20.label.files">
+					</field>
+				</appearance>
+			</form>
+		</forms>
+	</config>
+
+	<config evaluator="task-type" condition="alvexwfpr20:reviewTask">
+		<forms>
+			<form>
+				<field-visibility>
+					<show id="bpm:dueDate" />
+					<show id="alvexwfpr20:initiator" />
+					<show id="alvexwfpr20:initiatorComment"/>
+					<show id="packageItems"/>
+					<show id="bpm:comment"/>
+					<show id="alvexwfpr20:reviewOutcome"/>
+				</field-visibility>
+				<appearance>
+					<set id="info" appearance="" label-id="alvex-parallel-review-20.title.assignees" template="/org/alfresco/components/form/2-column-set.ftl"/>
+					<set id="comment" />
+					<set id="document" appearance="title" label-id="alvex-parallel-review-20.title.document"/>
+					<set id="response" appearance="title" label-id="alvex-parallel-review-20.title.response"/>
+					<field id="bpm:dueDate"  set="info" read-only="true"/>
+					<field id="alvexwfpr20:initiator" label-id="alvex-parallel-review-20.label.initiator" set="info" read-only="true"/>
+					<field id="alvexwfpr20:initiatorComment" label-id="alvex-parallel-review-20.label.comment" set="comment" read-only="true">
+						<control template="/alvex-mltext.ftl">
+							<control-param name="style">width: 98%</control-param>
+						</control>
+					</field>
+					<field id="packageItems" set="document" label-id="alvex-parallel-review-20.label.files">
+					</field>
+					<field id="bpm:comment" label-id="alvex-parallel-review-20.label.comment" set="response">
+						<control template="/org/alfresco/components/form/controls/textarea.ftl">
+							<control-param name="style">width: 98%</control-param>
+						</control>
+					</field>
+					<field id="alvexwfpr20:reviewOutcome" set="response">
+						<control template="/org/alfresco/components/form/controls/workflow/activiti-transitions.ftl" />
+					</field>
+				</appearance>
+			</form>
+		</forms>
+	</config>
+
+	<config evaluator="task-type" condition="alvexwfpr20:reviseTask">
+		<forms>
+			<form>
+				<field-visibility>
+					<show id="packageItems"/>
+					<show id="alvexwfpr20:comments" />
+					<show id="bpm:assignees"/>
+					<show id="bpm:comment"/>
+					<show id="alvexwfpr20:reviseOutcome"/>
+				</field-visibility>
+				<appearance>
+					<set id="document" appearance="title" label-id="alvex-parallel-review-20.title.document"/>
+					<set id="response" appearance="title" label-id="alvex-parallel-review-20.title.response" template="/org/alfresco/components/form/2-column-set.ftl"/>
+					<field id="packageItems" set="document" label-id="alvex-parallel-review-20.label.files">
+					</field>
+					<field id="alvexwfpr20:comments" set="document" label-id="alvex-parallel-review-20.label.review-summary">
+						<control template="/review-summary.ftl" />
+					</field>
+					<field id="bpm:assignees" label-id="alvex-parallel-review-20.label.assignees" set="response">
+						<control template="/orgchart-picker.ftl" />
+					</field>
+					<field id="bpm:comment" label-id="alvex-parallel-review-20.label.comment" set="response">
+						<control template="/org/alfresco/components/form/controls/textarea.ftl">
+							<control-param name="style">width: 98%</control-param>
+						</control>
+					</field>
+					<field id="alvexwfpr20:reviseOutcome" set="response">
+						<control template="/org/alfresco/components/form/controls/workflow/activiti-transitions.ftl" />
+					</field>
+				</appearance>
+			</form>
+		</forms>
+	</config>
+
+	<config evaluator="task-type" condition="alvexwfpr20:approvedTask">
+		<forms>
+			<form>
+				<field-visibility>
+					<show id="packageItems"/>
+					<show id="alvexwfpr20:comments" />
+					<show id="alvexwfpr20:approvedOutcome"/>
+				</field-visibility>
+				<appearance>
+					<set id="document" appearance="title" label-id="alvex-parallel-review-20.title.document"/>
+					<set id="related_workflows" appearance="title" label-id="alvex.workflow.related_workflows" />
+					<set id="response"/>
+					<field id="packageItems" set="document" label-id="alvex-parallel-review-20.label.files">
+
+					</field>
+					<field id="alvexwfpr20:comments" set="document" label-id="alvex-parallel-review-20.label.review-summary">
+						<control template="/review-summary.ftl" />
+					</field>
+					<field id="alvexwfpr20:approvedOutcome" set="response">
+						<control template="/org/alfresco/components/form/controls/workflow/activiti-transitions.ftl" />
+					</field>
+				</appearance>
+			</form>
+		</forms>
+	</config>
+
+</alfresco-config>
