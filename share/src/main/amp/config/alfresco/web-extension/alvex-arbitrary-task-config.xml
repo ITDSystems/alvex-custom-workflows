@@ -38,6 +38,10 @@
 						</control>
 					</field>
 					<field id="packageItems" label-id="alvex.workflow.related-documents" set="documents">
+						<control template="/alvex-uploader.ftl">
+							<control-param name="uploadDirectory">uploads</control-param>
+							<control-param name="createUploadDirectory">true</control-param>
+						</control>
 					</field>
 					<field id="alvexwfat:confirmationRequired" label-id="alvex.workflow.alvexwfat_confirmationRequired" set="documents" />
 				</appearance>
@@ -84,7 +88,10 @@
 						</control>
 					</field>
 					<field id="packageItems" label-id="alvex.workflow.related-documents" set="documents">
-
+						<control template="/alvex-uploader.ftl">
+							<control-param name="uploadDirectory">uploads</control-param>
+							<control-param name="createUploadDirectory">true</control-param>
+						</control>
 					</field>
 					<field id="alvexwfat:confirmationRequired" label-id="alvex.workflow.alvexwfat_confirmationRequired" set="documents" />
 				</appearance>
@@ -113,6 +120,10 @@
 						</control>
 					</field>
 					<field id="packageItems" label-id="alvex.workflow.related-documents" set="documents">
+						<control template="/alvex-uploader.ftl">
+							<control-param name="uploadDirectory">uploads</control-param>
+							<control-param name="createUploadDirectory">true</control-param>
+						</control>
 					</field>
 					<field id="transitions" set="documents" />
 				</appearance>
@@ -140,7 +151,10 @@
 						</control>
 					</field>
 					<field id="packageItems" label-id="alvex.workflow.related-documents" set="documents">
-
+						<control template="/alvex-uploader.ftl">
+							<control-param name="uploadDirectory">uploads</control-param>
+							<control-param name="createUploadDirectory">true</control-param>
+						</control>
 					</field>
 				</appearance>
 			</form>
@@ -168,7 +182,10 @@
 						</control>
 					</field>
 					<field id="packageItems" label-id="alvex.workflow.related-documents" set="documents">
-
+						<control template="/alvex-uploader.ftl">
+							<control-param name="uploadDirectory">uploads</control-param>
+							<control-param name="createUploadDirectory">true</control-param>
+						</control>
 					</field>
 					<field id="alvexwfat:controlOutcome" set="documents">
 						<control template="/org/alfresco/components/form/controls/workflow/activiti-transitions.ftl" />
