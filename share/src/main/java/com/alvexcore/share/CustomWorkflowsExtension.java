@@ -28,6 +28,5 @@ public class CustomWorkflowsExtension extends ShareExtension {
 	// constructor
 	public CustomWorkflowsExtension() throws Exception {
 		id = "custom-workflows";
-		extInfoPath = "alvex-custom-workflows.properties";
 	}
 }
