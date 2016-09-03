@@ -19,24 +19,11 @@
 
 package com.alvexcore.repo;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.alfresco.repo.security.authentication.AuthenticationUtil;
-import org.alfresco.repo.security.authentication.AuthenticationUtil.RunAsWork;
-import org.alfresco.service.ServiceRegistry;
-import org.alfresco.service.cmr.security.AuthorityService;
-import org.alfresco.service.cmr.security.AuthorityType;
-
-import com.alvexcore.repo.workflow.activiti.WorkflowPermissionManager;
-
 /**
  * CustomWorkflows extension implementation
  */
 
 public class CustomWorkflowsExtension extends RepositoryExtension {
-
-	public static final String ROOT_GROUP_NAME = "alvex_workflow_groups";
 
 	// constructor
 	public CustomWorkflowsExtension() throws Exception {
@@ -44,21 +31,4 @@ public class CustomWorkflowsExtension extends RepositoryExtension {
 		extInfoPath = "alvex-custom-workflows.properties";
 	}
 
-	@Override
-	public void init(boolean failIfInitialized) throws Exception {
-		super.init(failIfInitialized);
-		AuthorityService as = serviceRegistry.getAuthorityService();
-		if (!as.authorityExists(as.getName(AuthorityType.GROUP,
-				CustomWorkflowsExtension.ROOT_GROUP_NAME))) {
-			Set<String> zones = new HashSet<String>();
-			zones.add(WorkflowPermissionManager.ZONE_ALVEX);
-			as.createAuthority(AuthorityType.GROUP,
-					CustomWorkflowsExtension.ROOT_GROUP_NAME,
-					CustomWorkflowsExtension.ROOT_GROUP_NAME, zones);
-		}
-	}
-
-	void upgradeConfiguration(String oldVersion, String oldEdition) {
-		//
-	}
 }
