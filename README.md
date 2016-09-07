@@ -1,16 +1,14 @@
 [![Build Status](https://travis-ci.org/ITDSystems/alvex-custom-workflows.svg?branch=master)](https://travis-ci.org/ITDSystems/alvex-custom-workflows)
 
 
-Alvex custom workflows component
-================================
+# Alvex custom workflows component
 
 DESCRIPTION GOES HERE
 
+# Downloads
 
-Build
------
+Alvex component builds are automatically published to [nexus.itdhq.com](http://nexus.itdhq.com) by Travis CI.
 
-The component may be packaged in two ways: *amp* and *jar*.
-To build amp use `mvn clean package`, to build installable jar use `mvn -P make-jar clean package`.
+# Build
 
-**Note**: this project requires Maven 3.3.9 at least.
+To build Alvex follow [this guide](https://github.com/ITDSystems/alvex#build-component-from-source).
