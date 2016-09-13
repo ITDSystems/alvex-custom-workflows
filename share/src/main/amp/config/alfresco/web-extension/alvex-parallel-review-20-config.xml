@@ -31,6 +31,10 @@
 						</control>
 					</field>
 					<field id="packageItems" set="document" label-id="alvex-parallel-review-20.label.files">
+						<control template="/alvex-uploader.ftl">
+							<control-param name="uploadDirectory">uploads</control-param>
+							<control-param name="createUploadDirectory">true</control-param>
+						</control>
 					</field>
 				</appearance>
 			</form>
@@ -70,6 +74,10 @@
 						<control template="/org/alfresco/components/form/controls/workflow/email-notification.ftl" />
 					</field>
 					<field id="packageItems" set="document" label-id="alvex-parallel-review-20.label.files">
+						<control template="/alvex-uploader.ftl">
+							<control-param name="uploadDirectory">uploads</control-param>
+							<control-param name="createUploadDirectory">true</control-param>
+						</control>
 					</field>
 				</appearance>
 			</form>
@@ -100,6 +108,10 @@
 						</control>
 					</field>
 					<field id="packageItems" set="document" label-id="alvex-parallel-review-20.label.files">
+						<control template="/alvex-uploader.ftl">
+							<control-param name="uploadDirectory">uploads</control-param>
+							<control-param name="createUploadDirectory">true</control-param>
+						</control>
 					</field>
 					<field id="bpm:comment" label-id="alvex-parallel-review-20.label.comment" set="response">
 						<control template="/org/alfresco/components/form/controls/textarea.ftl">
@@ -128,6 +140,10 @@
 					<set id="document" appearance="title" label-id="alvex-parallel-review-20.title.document"/>
 					<set id="response" appearance="title" label-id="alvex-parallel-review-20.title.response" template="/org/alfresco/components/form/2-column-set.ftl"/>
 					<field id="packageItems" set="document" label-id="alvex-parallel-review-20.label.files">
+						<control template="/alvex-uploader.ftl">
+							<control-param name="uploadDirectory">uploads</control-param>
+							<control-param name="createUploadDirectory">true</control-param>
+						</control>
 					</field>
 					<field id="alvexwfpr20:comments" set="document" label-id="alvex-parallel-review-20.label.review-summary">
 						<control template="/review-summary.ftl" />
@@ -161,7 +177,10 @@
 					<set id="related_workflows" appearance="title" label-id="alvex.workflow.related_workflows" />
 					<set id="response"/>
 					<field id="packageItems" set="document" label-id="alvex-parallel-review-20.label.files">
-
+						<control template="/alvex-uploader.ftl">
+							<control-param name="uploadDirectory">uploads</control-param>
+							<control-param name="createUploadDirectory">true</control-param>
+						</control>
 					</field>
 					<field id="alvexwfpr20:comments" set="document" label-id="alvex-parallel-review-20.label.review-summary">
 						<control template="/review-summary.ftl" />
