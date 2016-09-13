@@ -30,7 +30,10 @@
 						</control>
 					</field>
 					<field id="packageItems" label-id="alvex_documents-dispatching.label.packageItems" set="documents">
-
+						<control template="/alvex-uploader.ftl">
+							<control-param name="uploadDirectory">uploads</control-param>
+							<control-param name="createUploadDirectory">true</control-param>
+						</control>
 					</field>
 				</appearance>
 			</form>
@@ -68,6 +71,10 @@
 						</control>
 					</field>
 					<field id="packageItems" label-id="alvex_documents-dispatching.label.packageItems" set="documents">
+						<control template="/alvex-uploader.ftl">
+							<control-param name="uploadDirectory">uploads</control-param>
+							<control-param name="createUploadDirectory">true</control-param>
+						</control>
 					</field>
 				</appearance>
 			</form>
@@ -94,6 +101,10 @@
 						<control template="/alvex-mltext.ftl" />
 					</field>
 					<field id="packageItems" label-id="alvex_documents-dispatching.label.packageItems" set="documents" label="">
+						<control template="/alvex-uploader.ftl">
+							<control-param name="uploadDirectory">uploads</control-param>
+							<control-param name="createUploadDirectory">true</control-param>
+						</control>
 					</field>
 					<field id="alvexdd20:readOutcome" set="response">
 						<control template="/org/alfresco/components/form/controls/workflow/activiti-transitions.ftl" />
