@@ -14,7 +14,7 @@ This component depends on:
 * [Alvex Utils](https://github.com/ITDSystems/alvex-utils)
 * [Alvex Orgchart](https://github.com/ITDSystems/alvex-orgchart)
 * [Alvex Uploader](https://github.com/ITDSystems/alvex-uploader)
-* [Alvex Workflow Permissions](https://github.com/ITDSystems/alvex-workflow-shortcut-dashlet)
+* [Alvex Workflow Permissions](https://github.com/ITDSystems/alvex-workflow-permissions)
 
 # Downloads
 
