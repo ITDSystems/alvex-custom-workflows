@@ -2,6 +2,14 @@
 
 <alfresco-config>
 
+	<config>
+                <forms>      
+                        <dependencies>
+                                <js  src="/js/components/alvex/review-summary/review-summary.js" />
+                        </dependencies>
+                </forms>
+        </config>
+
 	<config evaluator="string-compare" condition="activiti$alvex-parallel-review-20">
 		<forms>
 			<form>
