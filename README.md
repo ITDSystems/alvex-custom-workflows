@@ -26,8 +26,6 @@ To build Alvex follow [this guide](https://github.com/ITDSystems/alvex#build-com
 
 # Use
 
-### Orgchart basics and configuration in UI
-
 ### Assign a Task
 
 Workflow described in Alvex documentation: [http://docs.alvexcore.com/en-US/Alvex/2.0.3/html-single/User_Guide/#workflows_assign_a_task](http://docs.alvexcore.com/en-US/Alvex/2.0.3/html-single/User_Guide/#workflows_assign_a_task)
