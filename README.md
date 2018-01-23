@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/ITDSystems/alvex-custom-workflows.svg?branch=master)](https://travis-ci.org/ITDSystems/alvex-custom-workflows)
 
-Alvex custom workflows component
+Alvex custom workflows component (deprecated)
 ========================
 
 Includes a number of workflow for Alfresco that presents features of Alvex components and can be used for generic use cases:
