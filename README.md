@@ -1,6 +1,8 @@
+**This extension for Alfresco is obsolete and unsupported. Use it on your own risk.**
+
 [![Build Status](https://travis-ci.org/ITDSystems/alvex-custom-workflows.svg?branch=master)](https://travis-ci.org/ITDSystems/alvex-custom-workflows)
 
-Alvex custom workflows component (deprecated)
+Alvex custom workflows component (deprecated since Alfresco 4.2.f)
 ========================
 
 Includes a number of workflow for Alfresco that presents features of Alvex components and can be used for generic use cases:
